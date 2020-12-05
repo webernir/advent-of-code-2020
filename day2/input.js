@@ -1,7 +1,7 @@
 const regex = `(\d+)-(\d+)\s(\w):\s(.*)`;
 const replacePattern = `{min: "$1", max: "$2", letter: "$3", pass: "$4"},`;
 
-var input = [
+export const input = [
   { min: "6", max: "10", letter: "p", pass: "ctpppjmdpppppp" },
   { min: "17", max: "19", letter: "l", pass: "llllllllllllllllllll" },
   { min: "14", max: "19", letter: "z", pass: "zrzzzzzztzzzzwzzzzk" },
@@ -1003,24 +1003,3 @@ var input = [
   { min: "3", max: "4", letter: "v", pass: "vvxxv" },
   { min: "8", max: "11", letter: "t", pass: "tttttttcttm" },
 ];
-
-const timesInString = (text, char) =>
-  [...text].filter((s) => s === char).length;
-
-function isValidA({ pass, min, max, letter }) {
-  const times = timesInString(pass, letter);
-  return times >= min && times <= max;
-}
-
-const partA = () => input.filter(isValidA);
-
-function isValidB({ pass, min, max, letter }) {
-  const a = pass[min - 1];
-  const b = pass[max - 1];
-  return a !== b && (a === letter || b === letter);
-}
-
-const partB = () => input.filter(isValidB);
-
-console.log("Part A:", partA().length);
-console.log("Part B:", partB().length);
